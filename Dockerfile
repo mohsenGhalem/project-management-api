@@ -1,15 +1,19 @@
-FROM node:20-alpine
+FROM node:20.11-alpine3.19
 
 WORKDIR /app
 
-COPY package*.json ./
+# Install pnpm and NestJS CLI
+RUN npm install -g pnpm @nestjs/cli
 
-RUN npm ci --only=production && npm cache clean --force
+COPY package*.json pnpm-lock.yaml* ./
+
+# Use pnpm instead of npm for installation
+RUN pnpm install && pnpm store prune
 
 COPY . .
 
-RUN npm run build
+RUN pnpm run build
 
 EXPOSE 3000
 
-CMD ["npm", "run", "start:prod"]
+CMD ["pnpm", "run", "start:prod"]
