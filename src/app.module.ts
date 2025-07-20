@@ -17,11 +17,13 @@ import { ActivitiesModule } from './activities/activities.module';
 import { TimeEntriesModule } from './time-entries/times-entries.module';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
     ConfigModule,
     DatabaseModule,
+    AuthModule,
     ProjectsModule,
     TasksModule,
     UsersModule,

@@ -40,7 +40,7 @@ import { Media } from 'src/media/entites/media.entity';
           ProjectTemplate,
           Activity,
         ],
-        synchronize: false,
+        synchronize: true,
         logging:false,
         ssl: true,
       }),

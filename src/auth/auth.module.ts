@@ -14,6 +14,7 @@ import { AuthController } from './auth.controller';
   imports: [
     UsersModule,
     PassportModule,
+    ConfigModule,
     TypeOrmModule.forFeature([User]),
     JwtModule.registerAsync({
       imports: [ConfigModule],
