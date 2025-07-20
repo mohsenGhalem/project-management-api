@@ -8,6 +8,7 @@ import { Activity } from '../../activities/entities/activity.entity';
 import { Project } from 'src/projects/entites/project.entity';
 import { Media } from 'src/media/entites/media.entity';
 import { UserRole, Department } from '../../common/enums';
+import { Exclude } from 'class-transformer';
 
 @Entity('users')
 export class User {
@@ -19,6 +20,10 @@ export class User {
 
   @Column({ unique: true })
   email: string;
+
+  @Column({ select: false }) 
+  @Exclude() 
+  password: string;
 
   @Column({
     type: 'enum',

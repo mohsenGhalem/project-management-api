@@ -42,7 +42,7 @@ import { Media } from 'src/media/entites/media.entity';
         ],
         synchronize: false,
         logging:false,
-        ssl: false,
+        ssl: true,
       }),
     }),
   ],

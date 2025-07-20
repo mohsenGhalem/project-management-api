@@ -1,6 +1,5 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { DatabaseModule } from './database/database.module';
@@ -16,6 +15,8 @@ import { MediaModule } from './media/media.module';
 import { ProjectTemplatesModule } from './project-templates/project-templates.module';
 import { ActivitiesModule } from './activities/activities.module';
 import { TimeEntriesModule } from './time-entries/times-entries.module';
+import { APP_GUARD } from '@nestjs/core';
+import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 
 @Module({
   imports: [
@@ -35,6 +36,13 @@ import { TimeEntriesModule } from './time-entries/times-entries.module';
     ActivitiesModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: APP_GUARD,
+      useClass: JwtAuthGuard,
+    },
+
+  ],
 })
 export class AppModule {}
